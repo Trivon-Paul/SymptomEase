@@ -125,14 +125,11 @@ class MainActivity : AppCompatActivity() {
 
     fun updateSpinner(token :String){
         val symptomsList = retrofit.create(SymptomsListService::class.java)
-        println(token)
         symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
             override fun onResponse(
                 call: Call<SymptomsList>,
                 response: Response<SymptomsList>
             ) {
-                println(response.message())
-                println(response.code())
                 if (response.body() != null) {
                     for (symptom in response.body()!!.listOfSymptoms) {
                         listSymptoms.add(symptom.symptomName)
