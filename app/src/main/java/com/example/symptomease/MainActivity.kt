@@ -25,9 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var spinnerValue : String = ""
+    private var tokenUsed : String = ""
+    private var spinnerValueID : Int = 0
+    private var gender : String = ""
+    private var year_of_birth = 0
     lateinit var retrofitLogin: Retrofit
     lateinit var retrofit: Retrofit
     var listSymptoms = mutableListOf<String>()
+    var listSymptomsID = mutableListOf<Int>()
 
     private val TAG = "MainActivity"
 
@@ -68,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 spinnerValue = listSymptoms.get(p2)
+                spinnerValueID = listSymptomsID.get(p2)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -82,13 +88,24 @@ class MainActivity : AppCompatActivity() {
         if(spinnerValue.equals("")){
             Toast.makeText(this, "Select a valid symptom", Toast.LENGTH_SHORT).show()
         } else {
+            val diagnostics = retrofit.create(DiagnosticsService::class.java)
+            diagnostics.getDiagnosis(tokenUsed, "en-gb",
+                spinnerValueID, gender, year_of_birth)
+                .enqueue(object : Callback<List<SymptomsList>?> {
+                override fun onResponse(call: Call<List<SymptomsList>?>,
+                                        response: Response<List<SymptomsList>?>) {
+
+                }
+
+                override fun onFailure(call: Call<List<SymptomsList>?>, t: Throwable) {
+
+                }
+            })
 
 
-
-            /*
-            val condition : String
-            val triage : String
-            val specialist : String
+            val condition : String = ""
+            val triage : String = ""
+            val specialist : String = ""
 
 
             val builder = AlertDialog.Builder(this)
@@ -103,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             }
             // create the dialog and show it
             val dialog = builder.create()
-            dialog.show() */
+            dialog.show()
         }
     }
 
@@ -114,7 +131,6 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Login>, response: Response<Login>) {
                 val body = response.body()
                 if (body != null) {
-                    println(body.Token)
                     updateSpinner(body.Token)
                 }
             }
@@ -127,20 +143,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateSpinner(token :String){
+        tokenUsed = token
         val symptomsList = retrofit.create(SymptomsListService::class.java)
         symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<List<SymptomsList>?> {
             override fun onResponse(
                 call: Call<List<SymptomsList>?>,
                 response: Response<List<SymptomsList>?>
             ) {
-                Log.d(TAG, "onResponse: $response")
-
                 val responseBody = response.body();
                 if (responseBody != null) {
 
                     for (i in responseBody) {
-                        Log.d(TAG, "onResponse: ${i.symptomName}")
                         listSymptoms.add(i.symptomName)
+                        listSymptomsID.add(i.symptomID)
                     }
                     finishUpdate()
                 }
@@ -150,30 +165,9 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-/*        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
-            override fun onResponse(
-                call: Call<SymptomsList>,
-                response: Response<SymptomsList>
-            ) {
-                if (response.body() != null) {
-                    for (symptom in response.body()!!.listOfSymptoms) {
-                        listSymptoms.add(symptom.symptomName)
-                    }
-                    finishUpdate()
-                }
-            }
-
-            override fun onFailure(call: Call<SymptomsList>, t: Throwable) {
-
-            }
-
-        })*/
-
-
     }
 
     fun finishUpdate(){
-        println("here")
         val spinner = findViewById<Spinner>(R.id.spinner)
         val symptomsAdapter = this?.let {
             ArrayAdapter<String>(it, android.R.layout.simple_spinner_dropdown_item, listSymptoms) }
