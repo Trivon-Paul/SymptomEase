@@ -25,10 +25,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var spinnerValue : String = ""
     lateinit var retrofit: Retrofit
+    var listSymptoms = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        retrofit = Retrofit.Builder()
+            .baseUrl(uri)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        apiLogin()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -45,39 +52,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        retrofit = Retrofit.Builder()
-            .baseUrl(uri)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-
-        var listSymptoms = mutableListOf<String>()
-        apiLogin()
-
-        println(token)
-        val symptomsList = retrofit.create(SymptomsListService::class.java)
-        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
-            override fun onResponse(
-                call: Call<SymptomsList>,
-                response: Response<SymptomsList>
-            ) {
-                if (response.body() != null) {
-                    for (symptom in response.body()!!.listOfSymptoms) {
-                        listSymptoms.add(symptom.symptomName)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<SymptomsList>, t: Throwable) {
-
-            }
-
-        })
 
         val spinner = findViewById<Spinner>(R.id.spinner)
-        val symptomsAdapter = this?.let {
-            ArrayAdapter<String>(it, android.R.layout.simple_spinner_dropdown_item, listSymptoms) }
-        spinner.adapter = symptomsAdapter
+
 
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -124,11 +101,12 @@ class MainActivity : AppCompatActivity() {
     fun apiLogin(){
         val login = retrofit.create(LoginService::class.java)
 
-        login.login().enqueue(object: Callback<Login>{
+         login.login().enqueue(object: Callback<Login>{
             override fun onResponse(call: Call<Login>, response: Response<Login>) {
                 val body = response.body()
                 if (body != null) {
-                    token = body.Token
+                    println(body.Token)
+                    updateSpinner(body.Token)
                 }
             }
 
@@ -137,14 +115,47 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+    }
 
+    fun updateSpinner(token :String){
+        println(token)
+        val symptomsList = retrofit.create(SymptomsListService::class.java)
+        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
+            override fun onResponse(
+                call: Call<SymptomsList>,
+                response: Response<SymptomsList>
+            ) {
+                println(response.message())
+                println(response.code())
+                if (response.body() != null) {
+                    for (symptom in response.body()!!.listOfSymptoms) {
+                        listSymptoms.add(symptom.symptomName)
+                    }
+                    finishUpdate()
+                }
+            }
+
+            override fun onFailure(call: Call<SymptomsList>, t: Throwable) {
+
+            }
+
+        })
+
+
+    }
+
+    fun finishUpdate(){
+        println("here")
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        val symptomsAdapter = this?.let {
+            ArrayAdapter<String>(it, android.R.layout.simple_spinner_dropdown_item, listSymptoms) }
+        spinner.adapter = symptomsAdapter
     }
 
     companion object varables{
         const val uri = "https://sandbox-authservice.priaid.ch/"
         const val loginUri = "login"
         const val api_key = "pault@my.ccsu.edu"
-        var token = "-"
 
 
         const val hash = "7da2b1034cd58b44b25fe4dd87a32695"
