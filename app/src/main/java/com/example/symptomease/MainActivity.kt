@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var spinnerValue : String = ""
+    lateinit var retrofitLogin: Retrofit
     lateinit var retrofit: Retrofit
     var listSymptoms = mutableListOf<String>()
 
@@ -32,6 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         retrofit = Retrofit.Builder()
             .baseUrl(uri)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        retrofitLogin = Retrofit.Builder()
+            .baseUrl(loginUri)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -99,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun apiLogin(){
-        val login = retrofit.create(LoginService::class.java)
+        val login = retrofitLogin.create(LoginService::class.java)
 
          login.login().enqueue(object: Callback<Login>{
             override fun onResponse(call: Call<Login>, response: Response<Login>) {
@@ -153,8 +159,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object varables{
-        const val uri = "https://sandbox-authservice.priaid.ch/"
-        const val loginUri = "login"
+        const val loginUri = "https://sandbox-authservice.priaid.ch/"
+        const val uri = "https://sandbox-healthservice.priaid.ch/"
         const val api_key = "pault@my.ccsu.edu"
 
 
