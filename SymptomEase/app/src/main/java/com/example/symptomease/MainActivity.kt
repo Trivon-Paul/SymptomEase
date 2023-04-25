@@ -52,26 +52,27 @@ class MainActivity : AppCompatActivity() {
 
 
         var listSymptoms = mutableListOf<String>()
-        if(apiLogin()) {
-            val symptomsList = retrofit.create(SymptomsListService::class.java)
-            symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
-                override fun onResponse(
-                    call: Call<SymptomsList>,
-                    response: Response<SymptomsList>
-                ) {
-                    if (response.body() != null) {
-                        for (symptom in response.body()!!.listOfSymptoms) {
-                            listSymptoms.add(symptom.symptomName)
-                        }
+        apiLogin()
+
+        println(token)
+        val symptomsList = retrofit.create(SymptomsListService::class.java)
+        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
+            override fun onResponse(
+                call: Call<SymptomsList>,
+                response: Response<SymptomsList>
+            ) {
+                if (response.body() != null) {
+                    for (symptom in response.body()!!.listOfSymptoms) {
+                        listSymptoms.add(symptom.symptomName)
                     }
                 }
+            }
 
-                override fun onFailure(call: Call<SymptomsList>, t: Throwable) {
+            override fun onFailure(call: Call<SymptomsList>, t: Throwable) {
 
-                }
+            }
 
-            })
-        }
+        })
 
         val spinner = findViewById<Spinner>(R.id.spinner)
         val symptomsAdapter = this?.let {
@@ -120,9 +121,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun apiLogin(): Boolean{
+    fun apiLogin(){
         val login = retrofit.create(LoginService::class.java)
-        var success = true
 
         login.login().enqueue(object: Callback<Login>{
             override fun onResponse(call: Call<Login>, response: Response<Login>) {
@@ -130,16 +130,13 @@ class MainActivity : AppCompatActivity() {
                 if (body != null) {
                     token = body.Token
                 }
-                success = true
             }
 
             override fun onFailure(call: Call<Login>, t: Throwable) {
-                success = false
             }
 
         })
 
-        return success
 
     }
 
@@ -147,7 +144,7 @@ class MainActivity : AppCompatActivity() {
         const val uri = "https://sandbox-authservice.priaid.ch/"
         const val loginUri = "login"
         const val api_key = "pault@my.ccsu.edu"
-        lateinit var token : String
+        var token = "-"
 
 
         const val hash = "7da2b1034cd58b44b25fe4dd87a32695"
