@@ -1,6 +1,7 @@
 package com.example.symptomease
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Xml
 import android.view.View
 import android.widget.AdapterView
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var retrofitLogin: Retrofit
     lateinit var retrofit: Retrofit
     var listSymptoms = mutableListOf<String>()
+
+    private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,7 +128,29 @@ class MainActivity : AppCompatActivity() {
 
     fun updateSpinner(token :String){
         val symptomsList = retrofit.create(SymptomsListService::class.java)
-        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
+        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<List<SymptomsList>?> {
+            override fun onResponse(
+                call: Call<List<SymptomsList>?>,
+                response: Response<List<SymptomsList>?>
+            ) {
+                Log.d(TAG, "onResponse: $response")
+
+                val responseBody = response.body();
+                if (responseBody != null) {
+
+                    for (i in responseBody) {
+                        Log.d(TAG, "onResponse: ${i.symptomName}")
+                        listSymptoms.add(i.symptomName)
+                    }
+                    finishUpdate()
+                }
+            }
+
+            override fun onFailure(call: Call<List<SymptomsList>?>, t: Throwable) {
+
+            }
+        })
+/*        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<SymptomsList> {
             override fun onResponse(
                 call: Call<SymptomsList>,
                 response: Response<SymptomsList>
@@ -142,7 +167,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        })
+        })*/
 
 
     }

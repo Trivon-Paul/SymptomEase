@@ -4,6 +4,6 @@ import retrofit2.http.*
 
 interface SymptomsListService {
     @GET("/symptoms")
-    fun getAllSymptoms(@Query("token") token : String, @Query("language") language : String) : Call<SymptomsList>
+    fun getAllSymptoms(@Query("token") token : String, @Query("language") language : String) : Call<List<SymptomsList>>
 
 }
