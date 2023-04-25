@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     var listSymptoms = mutableListOf<String>()
     var listSymptomsID = mutableListOf<Int>()
 
-    private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,39 +90,42 @@ class MainActivity : AppCompatActivity() {
             val diagnostics = retrofit.create(DiagnosticsService::class.java)
             diagnostics.getDiagnosis(tokenUsed, "en-gb",
                 spinnerValueID, gender, year_of_birth)
-                .enqueue(object : Callback<List<SymptomsList>?> {
-                override fun onResponse(call: Call<List<SymptomsList>?>,
-                                        response: Response<List<SymptomsList>?>) {
-
+                .enqueue(object : Callback<Diagnostics?> {
+                override fun onResponse(call: Call<Diagnostics?>,
+                                        response: Response<Diagnostics?>) {
+                    if(response != null) {
+                        displayDialog(response.body()?.issue?.Name ?: "",
+                            response.body()?.issue?.IcdName ?: "")
+                    }
                 }
 
-                override fun onFailure(call: Call<List<SymptomsList>?>, t: Throwable) {
+                override fun onFailure(call: Call<Diagnostics?>, t: Throwable) {
 
                 }
             })
 
 
-            val condition : String = ""
-            val triage : String = ""
-            val specialist : String = ""
-
-
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Diagnostics")
-            builder.setMessage("Symptom: $spinnerValue\n" +
-                    "Condition: $condition\n" +
-                    "Triage level: $triage\n" +
-                    "Specialist Recommendation: $specialist")
-
-            builder.setNeutralButton("Cancel"){dialog, _ ->
-                dialog.cancel()
-            }
-            // create the dialog and show it
-            val dialog = builder.create()
-            dialog.show()
         }
     }
 
+    fun displayDialog(condition : String, specialist : String){
+        val condition : String = ""
+        val specialist : String = ""
+
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Diagnostics")
+        builder.setMessage("Symptom: $spinnerValue\n" +
+                "Condition: $condition\n" +
+                "Specialist Recommendation: $specialist")
+
+        builder.setNeutralButton("Cancel"){dialog, _ ->
+            dialog.cancel()
+        }
+        // create the dialog and show it
+        val dialog = builder.create()
+        dialog.show()
+    }
     fun apiLogin(){
         val login = retrofitLogin.create(LoginService::class.java)
 

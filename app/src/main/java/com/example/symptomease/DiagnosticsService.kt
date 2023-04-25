@@ -8,5 +8,5 @@ interface DiagnosticsService {
     @GET("/diagnosis")
     fun getDiagnosis(@Query("token") token : String, @Query("language") language : String,
                      @Query("symptoms") symptomsID : Int, @Query("Gender") gender : String,
-                     @Query("year_of_birth") year_of_birth : Int) : Call<List<SymptomsList>>
+                     @Query("year_of_birth") year_of_birth : Int) : Call<Diagnostics>
 }
