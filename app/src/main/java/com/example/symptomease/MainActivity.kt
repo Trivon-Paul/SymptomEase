@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d(TAG, "onFailure:error ")
                     }
                 })
+            //test
 
 
 //            val diagnostics = retrofit.create(DiagnosticsService::class.java)
