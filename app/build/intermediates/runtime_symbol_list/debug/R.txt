@@ -2855,13 +2855,16 @@ int drawable test_level_drawable 0x7f0700df
 int drawable tooltip_frame_dark 0x7f0700e0
 int drawable tooltip_frame_light 0x7f0700e1
 int id ALT 0x7f080000
+int id Accuracy 0x7f080207
 int id BOTTOM_END 0x7f080001
 int id BOTTOM_START 0x7f080002
 int id CTRL 0x7f080003
 int id Description 0x7f080004
 int id FUNCTION 0x7f080005
+int id IcdName 0x7f080208
 int id META 0x7f080006
 int id NO_DEBUG 0x7f080007
+int id ProfName 0x7f080209
 int id SHIFT 0x7f080008
 int id SHOW_ALL 0x7f080009
 int id SHOW_PATH 0x7f08000a
@@ -2978,7 +2981,7 @@ int id clockwise 0x7f080078
 int id closest 0x7f080079
 int id collapseActionView 0x7f08007a
 int id compress 0x7f08007b
-int id condition_textview 0x7f08007c
+int id conditionTextview 0x7f08020a
 int id confirm_button 0x7f08007d
 int id constraint 0x7f08007e
 int id container 0x7f08007f
@@ -3319,8 +3322,6 @@ int id textSpacerNoButtons 0x7f0801cd
 int id textSpacerNoTitle 0x7f0801ce
 int id textStart 0x7f0801cf
 int id textTop 0x7f0801d0
-int id textView2 0x7f0801d1
-int id textView3 0x7f0801d2
 int id text_dashboard 0x7f0801d3
 int id text_home 0x7f0801d4
 int id text_input_end_icon 0x7f0801d5

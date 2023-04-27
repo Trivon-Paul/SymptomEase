@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/condition_textview"
+        android:id="@+id/conditionTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/IcdName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -41,10 +41,10 @@
         android:text="Icd Name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/condition_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/conditionTextview" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/ProfName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -52,10 +52,10 @@
         android:text="ProfName"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/IcdName" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Accuracy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -63,5 +63,5 @@
         android:text="Accuracy"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/ProfName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

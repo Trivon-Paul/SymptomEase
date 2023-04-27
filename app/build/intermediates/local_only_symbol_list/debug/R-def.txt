@@ -15,8 +15,11 @@ drawable ic_home_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_notifications_black_24dp
+id Accuracy
 id Description
-id condition_textview
+id IcdName
+id ProfName
+id conditionTextview
 id container
 id mobile_navigation
 id nav_host_fragment_activity_main
@@ -29,8 +32,6 @@ id spinner
 id symptomDescription
 id symptomName
 id symptomsList
-id textView2
-id textView3
 id text_dashboard
 id text_home
 id text_notifications

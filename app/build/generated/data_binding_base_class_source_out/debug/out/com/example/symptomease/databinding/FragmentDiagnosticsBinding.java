@@ -20,25 +20,29 @@ public final class FragmentDiagnosticsBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final TextView Accuracy;
+
+  @NonNull
+  public final TextView IcdName;
+
+  @NonNull
+  public final TextView ProfName;
+
+  @NonNull
   public final TextView conditionTextview;
 
   @NonNull
   public final TextView textNotifications;
 
-  @NonNull
-  public final TextView textView2;
-
-  @NonNull
-  public final TextView textView3;
-
-  private FragmentDiagnosticsBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView conditionTextview, @NonNull TextView textNotifications,
-      @NonNull TextView textView2, @NonNull TextView textView3) {
+  private FragmentDiagnosticsBinding(@NonNull ConstraintLayout rootView, @NonNull TextView Accuracy,
+      @NonNull TextView IcdName, @NonNull TextView ProfName, @NonNull TextView conditionTextview,
+      @NonNull TextView textNotifications) {
     this.rootView = rootView;
+    this.Accuracy = Accuracy;
+    this.IcdName = IcdName;
+    this.ProfName = ProfName;
     this.conditionTextview = conditionTextview;
     this.textNotifications = textNotifications;
-    this.textView2 = textView2;
-    this.textView3 = textView3;
   }
 
   @Override
@@ -68,7 +72,25 @@ public final class FragmentDiagnosticsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.condition_textview;
+      id = R.id.Accuracy;
+      TextView Accuracy = ViewBindings.findChildViewById(rootView, id);
+      if (Accuracy == null) {
+        break missingId;
+      }
+
+      id = R.id.IcdName;
+      TextView IcdName = ViewBindings.findChildViewById(rootView, id);
+      if (IcdName == null) {
+        break missingId;
+      }
+
+      id = R.id.ProfName;
+      TextView ProfName = ViewBindings.findChildViewById(rootView, id);
+      if (ProfName == null) {
+        break missingId;
+      }
+
+      id = R.id.conditionTextview;
       TextView conditionTextview = ViewBindings.findChildViewById(rootView, id);
       if (conditionTextview == null) {
         break missingId;
@@ -80,20 +102,8 @@ public final class FragmentDiagnosticsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView2;
-      TextView textView2 = ViewBindings.findChildViewById(rootView, id);
-      if (textView2 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView3;
-      TextView textView3 = ViewBindings.findChildViewById(rootView, id);
-      if (textView3 == null) {
-        break missingId;
-      }
-
-      return new FragmentDiagnosticsBinding((ConstraintLayout) rootView, conditionTextview,
-          textNotifications, textView2, textView3);
+      return new FragmentDiagnosticsBinding((ConstraintLayout) rootView, Accuracy, IcdName,
+          ProfName, conditionTextview, textNotifications);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

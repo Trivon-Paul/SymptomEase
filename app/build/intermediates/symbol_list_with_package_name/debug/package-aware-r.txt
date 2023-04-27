@@ -2856,13 +2856,16 @@ drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
+id Accuracy
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id Description
 id FUNCTION
+id IcdName
 id META
 id NO_DEBUG
+id ProfName
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -2979,7 +2982,7 @@ id clockwise
 id closest
 id collapseActionView
 id compress
-id condition_textview
+id conditionTextview
 id confirm_button
 id constraint
 id container
@@ -3320,8 +3323,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView2
-id textView3
 id text_dashboard
 id text_home
 id text_input_end_icon

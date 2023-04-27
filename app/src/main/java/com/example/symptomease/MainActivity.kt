@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                 "ProfName: ${issue.ProfName}\n" +
                 "Accuracy: ${issue.Accuracy}\n" +
                 "Specialisaition: ${specialisation.Name}\n"+
-                 "") //NOT SHOWING 4/26, issue with data class
+                 "")
 
         builder.setNeutralButton("Cancel"){dialog, _ ->
             dialog.cancel()
