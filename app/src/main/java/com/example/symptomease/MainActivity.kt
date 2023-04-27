@@ -1,5 +1,7 @@
 package com.example.symptomease
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.util.Xml
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var retrofit: Retrofit
     var listSymptoms = mutableListOf<String>()
     var listSymptomsID = mutableListOf<Int>()
+
+    private val TAG = "MainActivity"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,37 +91,92 @@ class MainActivity : AppCompatActivity() {
         if(spinnerValue.equals("")){
             Toast.makeText(this, "Select a valid symptom", Toast.LENGTH_SHORT).show()
         } else {
+
             val diagnostics = retrofit.create(DiagnosticsService::class.java)
-            diagnostics.getDiagnosis(tokenUsed, "en-gb",
-                spinnerValueID, gender, year_of_birth)
-                .enqueue(object : Callback<Diagnostics?> {
-                override fun onResponse(call: Call<Diagnostics?>,
-                                        response: Response<Diagnostics?>) {
-                    if(response != null) {
-                        displayDialog(response.body()?.issue?.Name ?: "",
-                            response.body()?.issue?.IcdName ?: "")
+            diagnostics.getDiagnosis(tokenUsed, "en-gb", "[$spinnerValueID]", "male", 1990)
+                .enqueue(object : Callback<List<Diagnostics>?> {
+                    override fun onResponse(
+                        call: Call<List<Diagnostics>?>,
+                        response: Response<List<Diagnostics>?>
+                    ) {
+                        val responseBody = response.body()
+                        if(!responseBody.isNullOrEmpty()){
+                            val firstResponse = responseBody[0]
+                            //HELP NEif(NEEDED HERE
+                            displayDialog(firstResponse.issue, firstResponse.specialisation[0])
+//                            //since specialisation is an array, indicate the index with loop
+//                       // response.body()?.specialisation[0].Name)
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<Diagnostics?>, t: Throwable) {
+                    override fun onFailure(call: Call<List<Diagnostics>?>, t: Throwable) {
+                        Log.d(TAG, "onFailure:error ")
+                    }
+                })
 
-                }
-            })
+
+//            val diagnostics = retrofit.create(DiagnosticsService::class.java)
+//            diagnostics.getDiagnosis(tokenUsed, "en-gb", spinnerValueID, gender, year_of_birth)
+//                .enqueue(object : Callback<Diagnostics?> {
+//                override fun onResponse(call: Call<Diagnostics?>,
+//                                        response: Response<Diagnostics?>) {
+//                    val responseBody = response.body()
+//
+//                    if(responseBody != null) {
+//                        displayDialog(responseBody.issue, responseBody.specialisation[0])
+//                            //since specialisation is an array, indicate the index with loop
+//                       // response.body()?.specialisation[0].Name)
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<Diagnostics?>, t: Throwable) {
+//
+//                }
+//            })
 
 
         }
     }
 
-    fun displayDialog(condition : String, specialist : String){
-        val condition : String = ""
-        val specialist : String = ""
+    //jalaun ross
+    //icdNAme = diagnosis
+    //it'll just diagnose you, it doesn't connect you to a professional
+    //however, it does give you an accuracy
+    //it'll be up to the user to find a professional for that
+
+    //Jalaun and Antonio
+    fun displayDialog(issue : Issue, specialisation : Specialist ){
+
+        val sharedPreferences = getSharedPreferences(
+            "preferences",
+            Context.MODE_PRIVATE
+        ) //HELP! I want to put Name, IcdName, ProfName, Accuracy, and Specialisation in shared preferences!
+        //got help from antonio
+        val editor = sharedPreferences.edit()
 
 
+        editor.putString("Name",issue.Name)
+        editor.putString("IcdName",issue.IcdName)
+        editor.putString("ProfName",issue.ProfName)
+        editor.putString("Accuracy",issue.Accuracy.toString())
+        editor.putString("Specialisation",specialisation.Name)
+        editor.apply()
+
+        //i'm getting an error on all editor.putString lines
+        //it says "expecting member declaration"
+
+
+        //fun displayDialog(condition : String, icdName : String, ProfName : String, Accuracy : Int? ){
+//
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Diagnostics")
         builder.setMessage("Symptom: $spinnerValue\n" +
-                "Condition: $condition\n" +
-                "Specialist Recommendation: $specialist")
+                "Name: ${issue.Name}\n" +
+                "IcdName: ${issue.IcdName}\n" +
+                "ProfName: ${issue.ProfName}\n" +
+                "Accuracy: ${issue.Accuracy}\n" +
+                "Specialisaition: ${specialisation.Name}\n"+
+                 "") //NOT SHOWING 4/26, issue with data class
 
         builder.setNeutralButton("Cancel"){dialog, _ ->
             dialog.cancel()
@@ -126,6 +185,10 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
+
+
+
+
     fun apiLogin(){
         val login = retrofitLogin.create(LoginService::class.java)
 
@@ -144,6 +207,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    //Jalaun Ross 4/27/2023
+    //To fix the problem with the spinner clearing data when transferring fragments, we can use
+    //viewmodel.
     fun updateSpinner(token :String){
         tokenUsed = token
         val symptomsList = retrofit.create(SymptomsListService::class.java)
@@ -168,6 +235,49 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+    //SHARED PREFERENCE CODE NOT DONE
+
+    /**
+     * ANTONIO COMMENT
+     * So it needs to save the three variables (Condition, Triage, Specialist) for each diagnostic that we get from the symptom.
+     * I have an idea that at least covers one, but I’m not sure how to create it so it works for all diagnostics.
+     * I’ll send the code that I added into one of the functions, it’s tied to the send button
+     * fun onSendClick(view: View){
+    if(spinnerValue.equals("")){
+    Toast.makeText(this, "Select a valid symptom", Toast.LENGTH_SHORT).show()
+    } else {
+
+    /*
+    val sharedPreferences = getSharedPreferences("Diagnostics", MODE_PRIVATE)
+    val editor = sharedPreferences.edit()
+
+    val condition : String
+    val triage : String
+    val specialist : String
+
+
+    val builder = AlertDialog.Builder(this)
+    builder.setTitle("Diagnostics")
+    builder.setMessage("Symptom: $spinnerValue\n" +
+    "Condition: $condition\n" +
+    "Triage level: $triage\n" +
+    "Specialist Recommendation: $specialist")
+
+    builder.setNeutralButton("Cancel"){dialog, _ ->
+    dialog.cancel()
+    }
+    // create the dialog and show it
+    val dialog = builder.create()
+    dialog.show()
+
+    editor.putString("Condition", condition)
+    editor.putString("Triage", triage)
+    editor.putString("Specialist", specialist)
+    editor.apply()
+    */
+    }
+    }
+     */
 
     fun finishUpdate(){
         val spinner = findViewById<Spinner>(R.id.spinner)
@@ -186,5 +296,11 @@ class MainActivity : AppCompatActivity() {
         const val hash2 = "3107d7589cfa06c71009935ead23dd9c"
 
         const val loginHeader = "Authorization: Bearer $api_key:$hash2"
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!tokenUsed.equals(""))
+            updateSpinner(tokenUsed)
     }
 }

@@ -4,7 +4,7 @@
             "outputFile": "com.example.symptomease.app-mergeDebugResources-45:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/Users/trivv.pault/.gradle/caches/transforms-3/5bf45942ca19c8e30bdd0366b1495316/transformed/material-1.8.0/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\Joshk\\.gradle\\caches\\transforms-3\\5bf45942ca19c8e30bdd0366b1495316\\transformed\\material-1.8.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,35,40",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/trivv.pault/.gradle/caches/transforms-3/7bfb54e5d1627dbafe92f9b455ff2224/transformed/appcompat-1.6.1/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\Joshk\\.gradle\\caches\\transforms-3\\7bfb54e5d1627dbafe92f9b455ff2224\\transformed\\appcompat-1.6.1\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -33,13 +33,13 @@
                     }
                 },
                 {
-                    "source": "/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/res/values-land/dimens.xml",
+                    "source": "C:\\Users\\Joshk\\AndroidStudioProjects\\SymptomEase2\\app\\src\\main\\res\\values-land\\dimens.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "6",
-                        "startOffsets": "18",
+                        "startOffsets": "19",
                         "endColumns": "43",
-                        "endOffsets": "55"
+                        "endOffsets": "56"
                     },
                     "to": {
                         "startLines": "5",
