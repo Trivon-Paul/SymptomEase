@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.symptomease.app-mergeDebugResources-45:/values-v23/values-v23.xml",
+            "outputFile": "com.example.symptomease.app-mergeDebugResources-48:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Joshk\\.gradle\\caches\\transforms-3\\f7dffa55bd3b8c6d7559cf87e7e15b04\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "source": "/Users/trivv.pault/.gradle/caches/transforms-3/f7dffa55bd3b8c6d7559cf87e7e15b04/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Joshk\\.gradle\\caches\\transforms-3\\5bf45942ca19c8e30bdd0366b1495316\\transformed\\material-1.8.0\\res\\values-v23\\values-v23.xml",
+                    "source": "/Users/trivv.pault/.gradle/caches/transforms-3/5bf45942ca19c8e30bdd0366b1495316/transformed/material-1.8.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,5,8,13,17,20,23,26,31,34,38",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Joshk\\.gradle\\caches\\transforms-3\\7bfb54e5d1627dbafe92f9b455ff2224\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
+                    "source": "/Users/trivv.pault/.gradle/caches/transforms-3/7bfb54e5d1627dbafe92f9b455ff2224/transformed/appcompat-1.6.1/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

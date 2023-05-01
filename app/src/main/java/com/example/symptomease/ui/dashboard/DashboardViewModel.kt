@@ -10,4 +10,10 @@ class DashboardViewModel : ViewModel() {
         
     }
     val text: LiveData<String> = _text
+
+    val spinnerData = MutableLiveData<List<String>>()
+
+    fun sendData(list : List<String>){
+        spinnerData.value = list
+    }
 }

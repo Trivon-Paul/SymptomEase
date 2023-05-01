@@ -13,15 +13,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.symptomease.databinding.ActivityMainBinding
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
-import java.math.BigInteger
-import java.security.MessageDigest
 
 class MainActivity : AppCompatActivity() {
 
@@ -85,6 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
     }
 
     fun onSendClick(view: View){
@@ -104,6 +107,9 @@ class MainActivity : AppCompatActivity() {
                             val firstResponse = responseBody[0]
                             //HELP NEif(NEEDED HERE
                             displayDialog(firstResponse.issue, firstResponse.specialisation[0])
+
+                            // add to database
+                            addToDatabase(spinnerValue, firstResponse.issue.Name)
 //                            //since specialisation is an array, indicate the index with loop
 //                       // response.body()?.specialisation[0].Name)
                         }
@@ -187,8 +193,18 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    // Trivon Paul
+    // add the symptom and specialist to database
+    fun addToDatabase(symptom : String, issue: String){
+        var db = Room.databaseBuilder(
+        this.applicationContext,
+        SymptomRoomDatabase::class.java, "symptoms.db"
+        ).build()
 
-
+        Thread {
+            db.savedSymptomsDAO().insertSavedSymptom(SavedSymptomEntity(0,symptom, issue))
+        }.start()
+    }
 
     fun apiLogin(){
         val login = retrofitLogin.create(LoginService::class.java)
