@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity() {
     fun onSendClick(view: View){
         if(spinnerValue.equals("")){
             Toast.makeText(this, "Select a valid symptom", Toast.LENGTH_SHORT).show()
+            apiLogin()
         } else {
 
             val diagnostics = retrofit.create(DiagnosticsService::class.java)
@@ -141,7 +142,8 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            })
 
-
+            spinnerValue = ""
+            spinnerValueID = 0
         }
     }
 
@@ -319,6 +321,5 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if (!tokenUsed.equals(""))
             updateSpinner(tokenUsed)
-        else apiLogin()
     }
 }
