@@ -319,5 +319,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if (!tokenUsed.equals(""))
             updateSpinner(tokenUsed)
+        else apiLogin()
     }
 }

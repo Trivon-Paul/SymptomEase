@@ -71,10 +71,15 @@ class SavedSymptomsFragment : Fragment() {
                 savedSymptoms.add(item.symptomName)
                 savedSymptomsDescription.add(item.symptomDescription)
             }
-            myAdapter.notifyDataSetChanged()
+             runOnUiThread{
+                 myAdapter.notifyDataSetChanged()
+             }
+
         }
 
         thread.start()
+
+
 
 
         return root
@@ -83,5 +88,11 @@ class SavedSymptomsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun Fragment?.runOnUiThread(action: () -> Unit) {
+        this ?: return
+        if (!isAdded) return // Fragment not attached to an Activity
+        activity?.runOnUiThread(action)
     }
 }
