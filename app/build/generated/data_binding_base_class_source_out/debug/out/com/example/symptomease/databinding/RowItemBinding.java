@@ -20,18 +20,14 @@ public final class RowItemBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextView Description;
-
-  @NonNull
   public final TextView symptomDescription;
 
   @NonNull
   public final TextView symptomName;
 
-  private RowItemBinding(@NonNull ConstraintLayout rootView, @NonNull TextView Description,
-      @NonNull TextView symptomDescription, @NonNull TextView symptomName) {
+  private RowItemBinding(@NonNull ConstraintLayout rootView, @NonNull TextView symptomDescription,
+      @NonNull TextView symptomName) {
     this.rootView = rootView;
-    this.Description = Description;
     this.symptomDescription = symptomDescription;
     this.symptomName = symptomName;
   }
@@ -63,12 +59,6 @@ public final class RowItemBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.Description;
-      TextView Description = ViewBindings.findChildViewById(rootView, id);
-      if (Description == null) {
-        break missingId;
-      }
-
       id = R.id.symptomDescription;
       TextView symptomDescription = ViewBindings.findChildViewById(rootView, id);
       if (symptomDescription == null) {
@@ -81,8 +71,7 @@ public final class RowItemBinding implements ViewBinding {
         break missingId;
       }
 
-      return new RowItemBinding((ConstraintLayout) rootView, Description, symptomDescription,
-          symptomName);
+      return new RowItemBinding((ConstraintLayout) rootView, symptomDescription, symptomName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
