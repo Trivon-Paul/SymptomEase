@@ -18,6 +18,8 @@ import com.example.symptomease.SavedSymptomEntity
 import com.example.symptomease.SymptomRoomDatabase
 import com.example.symptomease.databinding.FragmentSavedSymptomsBinding
 import com.example.symptomease.ui.dashboard.SymptomDatabase
+import java.util.*
+import kotlin.concurrent.scheduleAtFixedRate
 
 class SavedSymptomsFragment : Fragment() {
 
@@ -27,6 +29,7 @@ class SavedSymptomsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var db : SymptomRoomDatabase
+    private lateinit var thread : Thread
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,9 +52,18 @@ class SavedSymptomsFragment : Fragment() {
             SymptomRoomDatabase::class.java, "symptoms.db"
         ).build()
 
-        Thread {
-            val savedSymptoms = mutableListOf<String>()
-            val savedSymptomsDescription = mutableListOf<String>()
+
+        val savedSymptoms = mutableListOf<String>()
+        val savedSymptomsDescription = mutableListOf<String>()
+
+        val recycler = root.findViewById<RecyclerView>(R.id.symptomsList)
+
+        val myAdapter = MyAdapter(savedSymptoms, savedSymptomsDescription)
+        recycler.adapter = myAdapter
+
+        recycler.layoutManager = LinearLayoutManager(root.context)
+
+         thread = Thread {
 
             val savedList = db.savedSymptomsDAO().getSavedSymptoms()
 
@@ -59,13 +71,10 @@ class SavedSymptomsFragment : Fragment() {
                 savedSymptoms.add(item.symptomName)
                 savedSymptomsDescription.add(item.symptomDescription)
             }
+            myAdapter.notifyDataSetChanged()
+        }
 
-            val recycler = root.findViewById<RecyclerView>(R.id.symptomsList)
-
-            recycler.adapter = MyAdapter(savedSymptoms, savedSymptomsDescription)
-
-            recycler.layoutManager = LinearLayoutManager(root.context)
-        }.start()
+        thread.start()
 
 
         return root

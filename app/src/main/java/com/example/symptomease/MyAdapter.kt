@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(private val symptomName: MutableList<String>,
-                private val symptomDescription: MutableList<String>):
+class MyAdapter(private var symptomName: MutableList<String>,
+                private var symptomDescription: MutableList<String>):
         RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
 
     class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
@@ -21,10 +21,15 @@ class MyAdapter(private val symptomName: MutableList<String>,
         return MyViewHolder(view)
     }
 
+
     override fun getItemCount(): Int {
         return symptomName.size
     }
 
+    fun update(newList1: MutableList<String>, newList2: MutableList<String>){
+        symptomName = newList1
+        symptomDescription = newList2
+    }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.symptomName.text = symptomName.elementAt(position)
         holder.symptomDescription.text = symptomDescription.elementAt(position)

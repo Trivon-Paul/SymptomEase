@@ -43,71 +43,72 @@
 27-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:11:9-41
 28        android:supportsRtl="true"
 28-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:12:9-35
-29        android:theme="@style/Theme.SymptomEase" >
-29-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:13:9-49
-30        <activity
-30-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:17:9-26:20
-31            android:name="com.example.symptomease.MainActivity"
-31-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:18:13-41
-32            android:exported="true"
-32-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:19:13-36
-33            android:label="@string/app_name" >
-33-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:20:13-45
-34            <intent-filter>
-34-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:21:13-25:29
-35                <action android:name="android.intent.action.MAIN" />
-35-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:22:17-69
-35-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:22:25-66
-36
-37                <category android:name="android.intent.category.LAUNCHER" />
-37-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:24:17-77
-37-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:24:27-74
-38            </intent-filter>
-39        </activity>
-40
-41        <uses-library
-41-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
-42            android:name="androidx.window.extensions"
-42-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
-43            android:required="false" />
-43-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
-44        <uses-library
-44-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
-45            android:name="androidx.window.sidecar"
-45-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
-46            android:required="false" />
-46-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
-47
-48        <provider
-48-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-49            android:name="androidx.startup.InitializationProvider"
-49-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
-50            android:authorities="com.example.symptomease.androidx-startup"
-50-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
-51            android:exported="false" >
-51-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
-52            <meta-data
-52-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-53                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-53-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
-54                android:value="androidx.startup" />
-54-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
-55            <meta-data
-55-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/trivv.pault/.gradle/caches/transforms-3/528f10946969151ddeecc9c08cbfcbae/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
-56                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-56-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/trivv.pault/.gradle/caches/transforms-3/528f10946969151ddeecc9c08cbfcbae/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
-57                android:value="androidx.startup" />
-57-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/trivv.pault/.gradle/caches/transforms-3/528f10946969151ddeecc9c08cbfcbae/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
-58        </provider>
-59
-60        <service
-60-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:25:9-28:40
-61            android:name="androidx.room.MultiInstanceInvalidationService"
-61-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:26:13-74
-62            android:directBootAware="true"
-62-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:27:13-43
-63            android:exported="false" />
-63-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:28:13-37
-64    </application>
-65
-66</manifest>
+29        android:testOnly="true"
+30        android:theme="@style/Theme.SymptomEase" >
+30-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:13:9-49
+31        <activity
+31-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:17:9-26:20
+32            android:name="com.example.symptomease.MainActivity"
+32-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:18:13-41
+33            android:exported="true"
+33-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:19:13-36
+34            android:label="@string/app_name" >
+34-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:20:13-45
+35            <intent-filter>
+35-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:21:13-25:29
+36                <action android:name="android.intent.action.MAIN" />
+36-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:22:17-69
+36-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:22:25-66
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:24:17-77
+38-->/Users/trivv.pault/Documents/School Related/Junior Year CCSU/SPRING2023/CS414/AndroidStudioProjects/SymptomEase/app/src/main/AndroidManifest.xml:24:27-74
+39            </intent-filter>
+40        </activity>
+41
+42        <uses-library
+42-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+43            android:name="androidx.window.extensions"
+43-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+44            android:required="false" />
+44-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+45        <uses-library
+45-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+46            android:name="androidx.window.sidecar"
+46-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+47            android:required="false" />
+47-->[androidx.window:window:1.0.0] /Users/trivv.pault/.gradle/caches/transforms-3/c3b734b042e3e1a43ac97bcab800c2b5/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+48
+49        <provider
+49-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+50            android:name="androidx.startup.InitializationProvider"
+50-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+51            android:authorities="com.example.symptomease.androidx-startup"
+51-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+52            android:exported="false" >
+52-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+53            <meta-data
+53-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+54                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+54-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+55                android:value="androidx.startup" />
+55-->[androidx.emoji2:emoji2:1.2.0] /Users/trivv.pault/.gradle/caches/transforms-3/c41b4469453a8a9f9613e5cbc1cd1923/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+56            <meta-data
+56-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/trivv.pault/.gradle/caches/transforms-3/528f10946969151ddeecc9c08cbfcbae/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+57                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+57-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/trivv.pault/.gradle/caches/transforms-3/528f10946969151ddeecc9c08cbfcbae/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+58                android:value="androidx.startup" />
+58-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/trivv.pault/.gradle/caches/transforms-3/528f10946969151ddeecc9c08cbfcbae/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+59        </provider>
+60
+61        <service
+61-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:25:9-28:40
+62            android:name="androidx.room.MultiInstanceInvalidationService"
+62-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:26:13-74
+63            android:directBootAware="true"
+63-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:27:13-43
+64            android:exported="false" />
+64-->[androidx.room:room-runtime:2.4.2] /Users/trivv.pault/.gradle/caches/transforms-3/c0926819fd25055122082274a1e8b8e0/transformed/room-runtime-2.4.2/AndroidManifest.xml:28:13-37
+65    </application>
+66
+67</manifest>
