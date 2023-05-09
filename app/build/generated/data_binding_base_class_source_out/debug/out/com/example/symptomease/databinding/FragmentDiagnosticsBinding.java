@@ -34,15 +34,19 @@ public final class FragmentDiagnosticsBinding implements ViewBinding {
   @NonNull
   public final TextView textNotifications;
 
+  @NonNull
+  public final TextView textView;
+
   private FragmentDiagnosticsBinding(@NonNull ConstraintLayout rootView, @NonNull TextView Accuracy,
       @NonNull TextView IcdName, @NonNull TextView ProfName, @NonNull TextView conditionTextview,
-      @NonNull TextView textNotifications) {
+      @NonNull TextView textNotifications, @NonNull TextView textView) {
     this.rootView = rootView;
     this.Accuracy = Accuracy;
     this.IcdName = IcdName;
     this.ProfName = ProfName;
     this.conditionTextview = conditionTextview;
     this.textNotifications = textNotifications;
+    this.textView = textView;
   }
 
   @Override
@@ -102,8 +106,14 @@ public final class FragmentDiagnosticsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textView;
+      TextView textView = ViewBindings.findChildViewById(rootView, id);
+      if (textView == null) {
+        break missingId;
+      }
+
       return new FragmentDiagnosticsBinding((ConstraintLayout) rootView, Accuracy, IcdName,
-          ProfName, conditionTextview, textNotifications);
+          ProfName, conditionTextview, textNotifications, textView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

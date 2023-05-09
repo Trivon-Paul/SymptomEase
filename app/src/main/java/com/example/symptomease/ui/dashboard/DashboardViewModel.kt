@@ -6,6 +6,29 @@ import androidx.lifecycle.ViewModel
 
 class DashboardViewModel : ViewModel() {
 
+    /**
+     * 3 steps to implement a ViewModel:
+    1. Separate your data from your UI
+    controller by creating a class that
+    extends ViewModel
+    2. Set up communications between
+    your ViewModel and your UI
+    controller
+    3. Use your ViewModel in your UI
+    controller
+     */
+
+    /* ??????????????
+        fun setPosition(positionPassed: Int) {
+        position.value = positionPassed
+    }
+
+    fun getPosition(): Int? {
+        return position.value
+    }
+
+     */
+
     private val _text = MutableLiveData<String>().apply {
         
     }

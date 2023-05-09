@@ -2851,6 +2851,7 @@ int drawable notification_template_icon_bg 0x7f0700db
 int drawable notification_template_icon_low_bg 0x7f0700dc
 int drawable notification_tile_bg 0x7f0700dd
 int drawable notify_panel_notification_icon_bg 0x7f0700de
+int drawable symptomease 0x7f0700e2
 int drawable test_level_drawable 0x7f0700df
 int drawable tooltip_frame_dark 0x7f0700e0
 int drawable tooltip_frame_light 0x7f0700e1
@@ -3076,6 +3077,7 @@ int id ifRoom 0x7f0800da
 int id ignore 0x7f0800db
 int id ignoreRequest 0x7f0800dc
 int id image 0x7f0800dd
+int id imageView 0x7f080206
 int id immediateStop 0x7f0800de
 int id included 0x7f0800df
 int id indeterminate 0x7f0800e0
@@ -3321,6 +3323,8 @@ int id textSpacerNoButtons 0x7f0801cf
 int id textSpacerNoTitle 0x7f0801d0
 int id textStart 0x7f0801d1
 int id textTop 0x7f0801d2
+int id textView 0x7f080209
+int id textView2 0x7f080207
 int id text_dashboard 0x7f0801d3
 int id text_home 0x7f0801d4
 int id text_input_end_icon 0x7f0801d5

@@ -30,13 +30,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var spinnerValue : String = ""
     private var tokenUsed : String = ""
-    private var spinnerValueID : Int = 0
+//    private var spinnerValueID : Int = 0
     private var gender : String = ""
     private var year_of_birth = 0
-    lateinit var retrofitLogin: Retrofit
-    lateinit var retrofit: Retrofit
-    var listSymptoms = mutableListOf<String>()
-    var listSymptomsID = mutableListOf<Int>()
+//    lateinit var retrofitLogin: Retrofit
+//    lateinit var retrofit: Retrofit
+//    var listSymptoms = mutableListOf<String>()
+//    var listSymptomsID = mutableListOf<Int>()
 
     private val TAG = "MainActivity"
 
@@ -44,17 +44,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        retrofit = Retrofit.Builder()
-            .baseUrl(uri)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        retrofitLogin = Retrofit.Builder()
-            .baseUrl(loginUri)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        apiLogin()
+//        retrofit = Retrofit.Builder()
+//            .baseUrl(uri)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//        retrofitLogin = Retrofit.Builder()
+//            .baseUrl(loginUri)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+
+        //apiLogin()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -72,79 +74,78 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
-        val spinner = findViewById<Spinner>(R.id.spinner)
-
-
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                spinnerValue = listSymptoms.get(p2)
-                spinnerValueID = listSymptomsID.get(p2)
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-        }
+//        val spinner = findViewById<Spinner>(R.id.spinner)
+//
+//        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                spinnerValue = listSymptoms.get(p2)
+//                spinnerValueID = listSymptomsID.get(p2)
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//
+//            }
+//
+//        }
 
 
     }
 
     fun onSendClick(view: View){
-        if(spinnerValue.equals("")){
-            Toast.makeText(this, "Select a valid symptom", Toast.LENGTH_SHORT).show()
-            apiLogin()
-        } else {
-
-            val diagnostics = retrofit.create(DiagnosticsService::class.java)
-            diagnostics.getDiagnosis(tokenUsed, "en-gb", "[$spinnerValueID]", "male", 1990)
-                .enqueue(object : Callback<List<Diagnostics>?> {
-                    override fun onResponse(
-                        call: Call<List<Diagnostics>?>,
-                        response: Response<List<Diagnostics>?>
-                    ) {
-                        val responseBody = response.body()
-                        if(!responseBody.isNullOrEmpty()){
-                            val firstResponse = responseBody[0]
-                            //HELP NEif(NEEDED HERE
-                            displayDialog(firstResponse.issue, firstResponse.specialisation[0])
-
-                            // add to database
-                            addToDatabase(spinnerValue, firstResponse.issue.Name)
-//                            //since specialisation is an array, indicate the index with loop
-//                       // response.body()?.specialisation[0].Name)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<List<Diagnostics>?>, t: Throwable) {
-                        Log.d(TAG, "onFailure:error ")
-                    }
-                })
-            //test
-
-
+//        if(spinnerValue.equals("")){
+//            Toast.makeText(this, "Select a valid symptom", Toast.LENGTH_SHORT).show()
+//            apiLogin()
+//        } else {
+//
 //            val diagnostics = retrofit.create(DiagnosticsService::class.java)
-//            diagnostics.getDiagnosis(tokenUsed, "en-gb", spinnerValueID, gender, year_of_birth)
-//                .enqueue(object : Callback<Diagnostics?> {
-//                override fun onResponse(call: Call<Diagnostics?>,
-//                                        response: Response<Diagnostics?>) {
-//                    val responseBody = response.body()
+//            diagnostics.getDiagnosis(tokenUsed, "en-gb", "[$spinnerValueID]", "male", 1990)
+//                .enqueue(object : Callback<List<Diagnostics>?> {
+//                    override fun onResponse(
+//                        call: Call<List<Diagnostics>?>,
+//                        response: Response<List<Diagnostics>?>
+//                    ) {
+//                        val responseBody = response.body()
+//                        if(!responseBody.isNullOrEmpty()){
+//                            val firstResponse = responseBody[0]
+//                            //HELP NEif(NEEDED HERE
+//                            displayDialog(firstResponse.issue, firstResponse.specialisation[0])
 //
-//                    if(responseBody != null) {
-//                        displayDialog(responseBody.issue, responseBody.specialisation[0])
-//                            //since specialisation is an array, indicate the index with loop
-//                       // response.body()?.specialisation[0].Name)
+//                            // add to database
+//                            addToDatabase(spinnerValue, firstResponse.issue.Name)
+////                            //since specialisation is an array, indicate the index with loop
+////                       // response.body()?.specialisation[0].Name)
+//                        }
 //                    }
-//                }
 //
-//                override fun onFailure(call: Call<Diagnostics?>, t: Throwable) {
+//                    override fun onFailure(call: Call<List<Diagnostics>?>, t: Throwable) {
+//                        Log.d(TAG, "onFailure:error ")
+//                    }
+//                })
+//            //test
 //
-//                }
-//            })
-
-            spinnerValue = ""
-            spinnerValueID = 0
-        }
+//
+////            val diagnostics = retrofit.create(DiagnosticsService::class.java)
+////            diagnostics.getDiagnosis(tokenUsed, "en-gb", spinnerValueID, gender, year_of_birth)
+////                .enqueue(object : Callback<Diagnostics?> {
+////                override fun onResponse(call: Call<Diagnostics?>,
+////                                        response: Response<Diagnostics?>) {
+////                    val responseBody = response.body()
+////
+////                    if(responseBody != null) {
+////                        displayDialog(responseBody.issue, responseBody.specialisation[0])
+////                            //since specialisation is an array, indicate the index with loop
+////                       // response.body()?.specialisation[0].Name)
+////                    }
+////                }
+////
+////                override fun onFailure(call: Call<Diagnostics?>, t: Throwable) {
+////
+////                }
+////            })
+//
+//            spinnerValue = ""
+//            spinnerValueID = 0
+//        }
     }
 
     //jalaun ross
@@ -154,106 +155,128 @@ class MainActivity : AppCompatActivity() {
     //it'll be up to the user to find a professional for that
 
     //Jalaun and Antonio
-    fun displayDialog(issue : Issue, specialisation : Specialist ){
-
-        val sharedPreferences = getSharedPreferences(
-            "preferences",
-            Context.MODE_PRIVATE
-        ) //HELP! I want to put Name, IcdName, ProfName, Accuracy, and Specialisation in shared preferences!
-        //got help from antonio
-        val editor = sharedPreferences.edit()
-
-
-        editor.putString("Name",issue.Name)
-        editor.putString("IcdName",issue.IcdName)
-        editor.putString("ProfName",issue.ProfName)
-        editor.putString("Accuracy",issue.Accuracy.toString())
-        editor.putString("Specialisation",specialisation.Name)
-        editor.apply()
-
-        //i'm getting an error on all editor.putString lines
-        //it says "expecting member declaration"
-
-
-        //fun displayDialog(condition : String, icdName : String, ProfName : String, Accuracy : Int? ){
+//    fun displayDialog(issue : Issue, specialisation : Specialist ){
 //
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Diagnostics")
-        builder.setMessage("Symptom: $spinnerValue\n" +
-                "Name: ${issue.Name}\n" +
-                "IcdName: ${issue.IcdName}\n" +
-                "ProfName: ${issue.ProfName}\n" +
-                "Accuracy: ${issue.Accuracy}\n" +
-                "Specialisaition: ${specialisation.Name}\n"+
-                 "")
-
-        builder.setNeutralButton("Cancel"){dialog, _ ->
-            dialog.cancel()
-        }
-        // create the dialog and show it
-        val dialog = builder.create()
-        dialog.show()
-    }
+//        val sharedPreferences = getSharedPreferences(
+//            "preferences",
+//            Context.MODE_PRIVATE
+//        ) //HELP! I want to put Name, IcdName, ProfName, Accuracy, and Specialisation in shared preferences!
+//        //got help from antonio
+//        val editor = sharedPreferences.edit()
+//
+//
+//        editor.putString("Name",issue.Name)
+//        editor.putString("IcdName",issue.IcdName)
+//        editor.putString("ProfName",issue.ProfName)
+//        editor.putString("Accuracy",issue.Accuracy.toString())
+//        editor.putString("Specialisation",specialisation.Name)
+//        editor.apply()
+//
+//        //i'm getting an error on all editor.putString lines
+//        //it says "expecting member declaration"
+//
+//
+//        //fun displayDialog(condition : String, icdName : String, ProfName : String, Accuracy : Int? ){
+////
+//        val builder = AlertDialog.Builder(this)
+//        builder.setTitle("Diagnostics")
+//        builder.setMessage("Symptom: $spinnerValue\n" +
+//                "Name: ${issue.Name}\n" +
+//                "IcdName: ${issue.IcdName}\n" +
+//                "ProfName: ${issue.ProfName}\n" +
+//                "Accuracy: ${issue.Accuracy}\n" +
+//                "Specialisaition: ${specialisation.Name}\n"+
+//                 "")
+//
+//        builder.setNeutralButton("Cancel"){dialog, _ ->
+//            dialog.cancel()
+//        }
+//        // create the dialog and show it
+//        val dialog = builder.create()
+//        dialog.show()
+//    }
 
     // Trivon Paul
     // add the symptom and specialist to database
-    fun addToDatabase(symptom : String, issue: String){
-        var db = Room.databaseBuilder(
-        this.applicationContext,
-        SymptomRoomDatabase::class.java, "symptoms.db"
-        ).build()
-
-        Thread {
-            db.savedSymptomsDAO().insertSavedSymptom(SavedSymptomEntity(0,symptom, issue))
-        }.start()
-    }
-
-    fun apiLogin(){
-        val login = retrofitLogin.create(LoginService::class.java)
-
-         login.login().enqueue(object: Callback<Login>{
-            override fun onResponse(call: Call<Login>, response: Response<Login>) {
-                val body = response.body()
-                if (body != null) {
-                    updateSpinner(body.Token)
-                }
-            }
-
-            override fun onFailure(call: Call<Login>, t: Throwable) {
-            }
-
-        })
-
-    }
+//    fun addToDatabase(symptom : String, issue: String){
+//        var db = Room.databaseBuilder(
+//        this.applicationContext,
+//        SymptomRoomDatabase::class.java, "symptoms.db"
+//        ).build()
+//
+//        Thread {
+//            db.savedSymptomsDAO().insertSavedSymptom(SavedSymptomEntity(0,symptom, issue))
+//        }.start()
+//    }
+//
+//    fun apiLogin(){
+//        val login = retrofitLogin.create(LoginService::class.java)
+//
+//         login.login().enqueue(object: Callback<Login>{
+//            override fun onResponse(call: Call<Login>, response: Response<Login>) {
+//                val body = response.body()
+//                if (body != null) {
+//                    updateSpinner(body.Token)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<Login>, t: Throwable) {
+//            }
+//
+//        })
+//
+//    }
 
 
     //Jalaun Ross 4/27/2023
     //To fix the problem with the spinner clearing data when transferring fragments, we can use
     //viewmodel.
-    fun updateSpinner(token :String){
-        tokenUsed = token
-        val symptomsList = retrofit.create(SymptomsListService::class.java)
-        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<List<SymptomsList>?> {
-            override fun onResponse(
-                call: Call<List<SymptomsList>?>,
-                response: Response<List<SymptomsList>?>
-            ) {
-                val responseBody = response.body();
-                if (responseBody != null) {
 
-                    for (i in responseBody) {
-                        listSymptoms.add(i.symptomName)
-                        listSymptomsID.add(i.symptomID)
-                    }
-                    finishUpdate()
-                }
-            }
 
-            override fun onFailure(call: Call<List<SymptomsList>?>, t: Throwable) {
+    /**
+     * 3 steps to implement a ViewModel:
+    1. Separate your data from your UI
+    controller by creating a class that
+    extends ViewModel
+    2. Set up communications between
+    your ViewModel and your UI
+    controller
+    3. Use your ViewModel in your UI
+    controller
+     */
+    /*
+  // Get an instance of our ViewModel using context
+  // and then set the position in our PositionViewModel
+    viewModel = ViewModelProvider(requireActivity()).get(PositionViewModel::class.java)
+    viewModel.position = position
+     */
 
-            }
-        })
-    }
+
+    //Then get the position from the view model?
+//    fun updateSpinner(token :String){
+//        tokenUsed = token
+//        val symptomsList = retrofit.create(SymptomsListService::class.java)
+//        symptomsList.getAllSymptoms(token, "en-gb").enqueue(object : Callback<List<SymptomsList>?> {
+//            override fun onResponse(
+//                call: Call<List<SymptomsList>?>,
+//                response: Response<List<SymptomsList>?>
+//            ) {
+//                val responseBody = response.body();
+//                if (responseBody != null) {
+//
+//                    for (i in responseBody) {
+//                        listSymptoms.add(i.symptomName)
+//                        listSymptomsID.add(i.symptomID)
+//                    }
+//                    finishUpdate()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<SymptomsList>?>, t: Throwable) {
+//
+//            }
+//        })
+//    }
     //SHARED PREFERENCE CODE NOT DONE
 
     /**
@@ -298,28 +321,18 @@ class MainActivity : AppCompatActivity() {
     }
      */
 
-    fun finishUpdate(){
-        val spinner = findViewById<Spinner>(R.id.spinner)
-        val symptomsAdapter = this?.let {
-            ArrayAdapter<String>(it, android.R.layout.simple_spinner_dropdown_item, listSymptoms) }
-        spinner.adapter = symptomsAdapter
-    }
-
-    companion object varables{
-        const val loginUri = "https://sandbox-authservice.priaid.ch/"
-        const val uri = "https://sandbox-healthservice.priaid.ch/"
-        const val api_key = "pault@my.ccsu.edu"
+//    fun finishUpdate(){
+//        val spinner = findViewById<Spinner>(R.id.spinner)
+//        val symptomsAdapter = this?.let {
+//            ArrayAdapter<String>(it, android.R.layout.simple_spinner_dropdown_item, listSymptoms) }
+//        spinner.adapter = symptomsAdapter
+//    }
 
 
-        const val hash = "7da2b1034cd58b44b25fe4dd87a32695"
-        const val hash2 = "3107d7589cfa06c71009935ead23dd9c"
 
-        const val loginHeader = "Authorization: Bearer $api_key:$hash2"
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (!tokenUsed.equals(""))
-            updateSpinner(tokenUsed)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        if (!tokenUsed.equals(""))
+//            updateSpinner(tokenUsed)
+//    }
 }
